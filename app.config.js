@@ -28,10 +28,11 @@ export default {
     "bundler": "metro"
   },
   "extra": {
-    "env": "develop",
+    "env": "development",
     "eas": {
       "projectId": "100fdb86-b4b2-4983-bf86-2528d71043b4"
-    }
+    },
+    "APOLLO_URI": process.env.EXPO_PUBLIC_APOLLO_URI
   },
   "owner": "pannio"
 }
