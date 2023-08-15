@@ -2,6 +2,7 @@ import { View, Pressable, StyleSheet } from 'react-native'
 import Text from './Text'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+import useSignIn from '../hooks/useSignIn'
 
 import FormikTextInput from './FormikTextInput'
 import theme from '../theme'
@@ -44,8 +45,17 @@ const LoginForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
-  const login = values => {
-    console.log(values)
+  const [signIn, { loading, error }] = useSignIn()
+  if (loading) return "Loading..."
+  if (error) return
+  const login = async values => {
+    const { username, password } = values
+    try {
+      const res = await signIn({ username, password })
+      console.log(res)
+    } catch (e) {
+      console.log(e)
+    }
   }
   return (
     <Formik initialValues={initialValues} onSubmit={login} validationSchema={validationSchema}>
