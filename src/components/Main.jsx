@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native'
 import { Route, Routes, Navigate } from 'react-router-native'
 
 import RepositoryList from './RepositoryList';
+import SignOut from './SignOut';
 import AppBar from './AppBar';
 import SignIn from './SignIn';
 import theme from '../theme';
@@ -23,6 +24,7 @@ const Main = () => {
         {/* 精确路由匹配 exact 只有路由完全匹配才尽兴渲染 */}
         <Route path='/' element={<RepositoryList />} exact />
         <Route path='/login' element={<SignIn />} exact />
+        <Route path='/signout' element={<SignOut />} exact />
         {/* 兜底路由 */}
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>

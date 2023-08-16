@@ -3,9 +3,11 @@ import Text from './Text'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import useSignIn from '../hooks/useSignIn'
+import { useNavigate } from 'react-router-native'
 
 import FormikTextInput from './FormikTextInput'
 import theme from '../theme'
+
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -45,14 +47,14 @@ const LoginForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
-  const [signIn, { loading, error }] = useSignIn()
-  if (loading) return "Loading..."
-  if (error) return
+  const [signIn] = useSignIn()
+  const navigate = useNavigate()
+
   const login = async values => {
     const { username, password } = values
     try {
-      const res = await signIn({ username, password })
-      console.log(res)
+      await signIn({ username, password })
+      navigate('/')
     } catch (e) {
       console.log(e)
     }

@@ -2,6 +2,7 @@ import { View, StyleSheet, ScrollView } from 'react-native'
 import { Link } from 'react-router-native'
 import Constants from 'expo-constants'
 import Text from './Text'
+import useMe from '../hooks/useMe'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,11 +27,12 @@ const Tab = ({ url, text }) => {
 }
 
 const AppBar = () => {
+  const { me } = useMe()
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <Tab url='/' text='Repositories' />
-        <Tab url='/login' text='Sign in' />
+        {me ? <Tab url='/signout' text='Sign Out' /> : <Tab url='/login' text='Sign In' />}
       </ScrollView>
     </View>
   )
