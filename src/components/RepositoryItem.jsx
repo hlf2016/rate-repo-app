@@ -56,7 +56,7 @@ const StatsItem = ({ number, text }) => {
 const RepositoryItem = ({ item }) => {
   // console.log(item)
   return (
-    <View style={styles.cardContainer}>
+    <View style={styles.cardContainer} testID='repositoryItem'>
       <View style={styles.header}>
         <View style={styles.avatarContainer}>
           <Image style={styles.avatar} source={{
@@ -64,9 +64,9 @@ const RepositoryItem = ({ item }) => {
           }} />
         </View>
         <View style={styles.info}>
-          <Text fontWeight='bold' fontSize='subheading'>{item.fullName}</Text>
-          <Text color='textSecondary'>{item.description}</Text>
-          <View style={{ display: 'flex', flexDirection: 'row' }}>
+          <Text fontWeight='bold' fontSize='subheading' testID='fullName'>{item.fullName}</Text>
+          <Text color='textSecondary' testID='description'>{item.description}</Text>
+          <View style={{ display: 'flex', flexDirection: 'row' }} testID='language'>
             <Text style={styles.languageTag}>
               {item.language}
             </Text>
@@ -74,10 +74,10 @@ const RepositoryItem = ({ item }) => {
         </View>
       </View>
       <View style={styles.statsContainer}>
-        <StatsItem text='Stars' number={item.stargazersCount} />
-        <StatsItem text='Forks' number={item.forksCount} />
-        <StatsItem text='Reviews' number={item.reviewCount} />
-        <StatsItem text='Rating' number={item.ratingAverage} />
+        <StatsItem text='Stars' number={item.stargazersCount} testID='stars' />
+        <StatsItem text='Forks' number={item.forksCount} testID='forks' />
+        <StatsItem text='Reviews' number={item.reviewCount} testID='reviews' />
+        <StatsItem text='Rating' number={item.ratingAverage} testID='rating' />
       </View>
     </View >
   )
