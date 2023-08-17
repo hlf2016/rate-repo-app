@@ -30,3 +30,26 @@ export const GET_ME = gql`
     }
   }
 `
+
+export const GET_REPOSITORY = gql`
+  ${CORE_REPOSITORY_FIELDS}
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      ...CoreRepositoryFields
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`

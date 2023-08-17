@@ -1,11 +1,14 @@
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, Pressable } from 'react-native'
 import theme from '../theme'
 import Text from './Text'
+import * as Linking from 'expo-linking'
 
 const styles = StyleSheet.create({
   cardContainer: {
     display: 'flex',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    padding: 15,
+    backgroundColor: '#fff'
   },
   avatarContainer: {
     flexGrow: 0,
@@ -37,6 +40,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 5
+  },
+  githubButton: {
+    padding: 10,
+    backgroundColor: theme.colors.primary,
+    marginTop: 10,
+    color: '#fff',
+    textAlign: 'center',
+    borderRadius: 5
   }
 
 })
@@ -53,7 +64,7 @@ const StatsItem = ({ number, text }) => {
   )
 }
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, showGithubButton = false }) => {
   // console.log(item)
   return (
     <View style={styles.cardContainer} testID='repositoryItem'>
@@ -79,6 +90,16 @@ const RepositoryItem = ({ item }) => {
         <StatsItem text='Reviews' number={item.reviewCount} testID='reviews' />
         <StatsItem text='Rating' number={item.ratingAverage} testID='rating' />
       </View>
+      {
+        showGithubButton ?
+          (
+            <Pressable onPress={() => Linking.openURL(item.url)}>
+              <Text style={styles.githubButton}>Open in Github</Text>
+            </Pressable>
+          )
+          : null
+      }
+
     </View >
   )
 }
