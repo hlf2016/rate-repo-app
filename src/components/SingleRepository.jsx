@@ -39,7 +39,7 @@ const RepositoryInfo = ({ repository }) => {
 }
 
 const ReviewItem = ({ review }) => {
-  console.log(review)
+  // console.log(review)
   const { node } = review
   return (
     <View style={styles.reviewContainer}>

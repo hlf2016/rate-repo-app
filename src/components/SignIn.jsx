@@ -1,5 +1,5 @@
-import { View, Pressable, StyleSheet } from 'react-native'
-import Text from './Text'
+import { View, StyleSheet } from 'react-native'
+import SubmitButton from './SubmitButton'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import useSignIn from '../hooks/useSignIn'
@@ -11,8 +11,10 @@ import theme from '../theme'
 
 const styles = StyleSheet.create({
   formContainer: {
-    marginLeft: 10,
-    marginRight: 10
+    backgroundColor: '#fff',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10
   },
   submitButton: {
     padding: 10,
@@ -39,9 +41,7 @@ const LoginForm = ({ onSubmit }) => {
     <View style={styles.formContainer}>
       <FormikTextInput name='username' placeholder='Username' />
       <FormikTextInput name='password' secureTextEntry placeholder='Password' />
-      <Pressable onPress={onSubmit} >
-        <Text fontWeight='bold' style={styles.submitButton}>Sign In</Text>
-      </Pressable>
+      <SubmitButton name='Sign In' onSubmit={onSubmit} />
     </View>
   )
 }

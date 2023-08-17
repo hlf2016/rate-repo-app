@@ -1,7 +1,8 @@
-import { View, Image, StyleSheet, Pressable } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import theme from '../theme'
-import Text from './Text'
 import * as Linking from 'expo-linking'
+import Text from './Text'
+import SubmitButton from './SubmitButton'
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -40,14 +41,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 5
-  },
-  githubButton: {
-    padding: 10,
-    backgroundColor: theme.colors.primary,
-    marginTop: 10,
-    color: '#fff',
-    textAlign: 'center',
-    borderRadius: 5
   }
 
 })
@@ -92,11 +85,7 @@ const RepositoryItem = ({ item, showGithubButton = false }) => {
       </View>
       {
         showGithubButton ?
-          (
-            <Pressable onPress={() => Linking.openURL(item.url)}>
-              <Text style={styles.githubButton}>Open in Github</Text>
-            </Pressable>
-          )
+          <SubmitButton name='Open in Github' onSubmit={() => Linking.openURL(item.url)} />
           : null
       }
 
