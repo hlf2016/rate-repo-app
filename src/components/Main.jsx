@@ -8,6 +8,7 @@ import SignIn from './SignIn';
 import theme from '../theme';
 import SingleRepository from './SingleRepository';
 import CreateReview from './CreateReview';
+import SignUp from './SignUp';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +30,7 @@ const Main = () => {
         <Route path='/signout' element={<SignOut />} exact />
         <Route path='/repositories/:id' element={<SingleRepository />} exact />
         <Route path='/reviews/create' element={<CreateReview />} />
+        <Route path='/signup' element={<SignUp />} />
         {/* 兜底路由 */}
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>

@@ -37,7 +37,7 @@ const CreateViewForm = ({ handleSubmit }) => {
 const validationSchema = yup.object().shape({
   ownerName: yup.string().required('Repository owner name is required'),
   repositoryName: yup.string().required('Repository name is required'),
-  rating: yup.number().integer().required().min(1, 'Rating must be greater than 0').max(100, 'Rating must be smaller than 100'),
+  rating: yup.number().integer().required('Rating is required').min(1, 'Rating must be greater than 0').max(100, 'Rating must be smaller than 100'),
 })
 
 const CreateReview = () => {

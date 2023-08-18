@@ -34,6 +34,7 @@ const AppBar = () => {
         <Tab url='/' text='Repositories' />
         {me ? <Tab url='/reviews/create' text='Create a Review' /> : null}
         {me ? <Tab url='/signout' text='Sign Out' /> : <Tab url='/login' text='Sign In' />}
+        {me ? null : <Tab url='/signup' text='Sign Up' />}
       </ScrollView>
     </View>
   )
