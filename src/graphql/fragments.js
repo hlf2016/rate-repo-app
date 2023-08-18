@@ -20,3 +20,17 @@ export const CORE_REPOSITORY_FIELDS = gql`
     userHasReviewed
   }
 `
+
+export const NODE_FIELDS = gql`
+  fragment NodeFields on Review {
+    id
+    text
+    rating
+    createdAt
+    repositoryId
+    user {
+      id
+      username
+    }
+  }
+`

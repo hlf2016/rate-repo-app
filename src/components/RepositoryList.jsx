@@ -1,4 +1,4 @@
-import { FlatList, View, StyleSheet, Pressable } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../hooks/useRepositories';
 import { useNavigate } from 'react-router-native'
@@ -6,12 +6,7 @@ import { useState, useEffect } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import { Searchbar } from 'react-native-paper';
 import { useDebounce } from 'use-debounce'
-
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-  }
-});
+import ItemSeparator from './ItemSeparator';
 
 const orderMap = {
   createdAtDesc: {
@@ -66,8 +61,6 @@ const RepositoryListHeader = ({ refetch }) => {
   )
 }
 
-const ItemSeparator = () => <View style={styles.separator} />
-
 export const RepositoryListContainer = ({ repositories, refetch }) => {
   const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : []
   const navigate = useNavigate()
@@ -81,7 +74,7 @@ export const RepositoryListContainer = ({ repositories, refetch }) => {
       ListHeaderComponent={<RepositoryListHeader refetch={refetch} />}
       renderItem={({ item }) => {
         return (
-          <Pressable style={styles.item} onPress={() => toViewRepository(item.id)}>
+          <Pressable onPress={() => toViewRepository(item.id)}>
             <RepositoryItem key={item.id} item={item} />
           </Pressable>
         )
