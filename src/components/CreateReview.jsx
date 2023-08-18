@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import SubmitButton from './SubmitButton'
 import * as yup from 'yup'
 import useCreateView from '../hooks/useCreateView'
+import { useNavigate } from 'react-router-native'
 
 const styles = StyleSheet.create({
   formContainer: {
@@ -41,9 +42,14 @@ const validationSchema = yup.object().shape({
 
 const CreateReview = () => {
   const [createView] = useCreateView()
+  const navigate = useNavigate()
   const onSubmit = async values => {
     try {
-      await createView({ ...values, rating: parseInt(values.rating) })
+      const { data } = await createView({ ...values, rating: parseInt(values.rating) })
+      if (data.createReview) {
+        navigate(`/repositories/${data.createReview.repositoryId}`)
+      }
+
     } catch (e) {
       console.log(e)
     }
