@@ -32,5 +32,9 @@ export const NODE_FIELDS = gql`
       id
       username
     }
+    repository {
+      ownerName
+      url
+    }
   }
 `
