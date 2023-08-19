@@ -82,14 +82,17 @@ const ReviewItem = ({ review, refetchSelfReviews, isMyReviews = false }) => {
           <Text style={{ textAlign: 'justify' }}>{node.text}</Text>
         </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <Pressable onPress={() => Linking.openURL(node.repository.url)}>
-          <Text style={styles.button} fontSize='subheading' fontWeight='bold'>View Repositiry</Text>
-        </Pressable>
-        <Pressable onPress={() => handleDeleteView(node.id)}>
-          <Text style={{ ...styles.button, backgroundColor: theme.colors.errorColor }} fontSize='subheading' fontWeight='bold'>Delete Review</Text>
-        </Pressable>
-      </View>
+      {isMyReviews ? (
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={() => Linking.openURL(node.repository.url)}>
+            <Text style={styles.button} fontSize='subheading' fontWeight='bold'>View Repositiry</Text>
+          </Pressable>
+          <Pressable onPress={() => handleDeleteView(node.id)}>
+            <Text style={{ ...styles.button, backgroundColor: theme.colors.errorColor }} fontSize='subheading' fontWeight='bold'>Delete Review</Text>
+          </Pressable>
+        </View>
+      ) : null}
+
     </View>
 
   )

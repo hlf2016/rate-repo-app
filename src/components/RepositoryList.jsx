@@ -61,7 +61,7 @@ const RepositoryListHeader = ({ refetch }) => {
   )
 }
 
-export const RepositoryListContainer = ({ repositories, refetch }) => {
+export const RepositoryListContainer = ({ repositories, refetch, onEndReach }) => {
   const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : []
   const navigate = useNavigate()
   const toViewRepository = (id) => {
@@ -72,6 +72,8 @@ export const RepositoryListContainer = ({ repositories, refetch }) => {
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={<RepositoryListHeader refetch={refetch} />}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
       renderItem={({ item }) => {
         return (
           <Pressable onPress={() => toViewRepository(item.id)}>
@@ -84,8 +86,14 @@ export const RepositoryListContainer = ({ repositories, refetch }) => {
 }
 
 const RepositoryList = () => {
-  const { repositories, refetch } = useRepositories()
-  return <RepositoryListContainer repositories={repositories} refetch={refetch} />
+  const { repositories, refetch, fetchMore } = useRepositories({
+    first: 6
+  })
+  const onEndReach = () => {
+    // console.log('You have reached the end of the list');
+    fetchMore()
+  }
+  return <RepositoryListContainer repositories={repositories} refetch={refetch} onEndReach={onEndReach} />
 }
 
 export default RepositoryList

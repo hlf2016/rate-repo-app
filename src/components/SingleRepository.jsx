@@ -13,9 +13,16 @@ const RepositoryInfo = ({ repository }) => {
 const SingleRepository = () => {
   const params = useParams()
   if (!params.id) return null
-  const { repository, error, loading } = useRepository(params.id)
+  const { repository, error, loading, fetchMore } = useRepository({ id: params.id })
   if (error || loading) return null
   // console.log(repository)
+
+  const onReachEnd = () => {
+    console.log('更多')
+    fetchMore({
+      first: 2
+    })
+  }
 
   return (
     <FlatList
@@ -23,6 +30,8 @@ const SingleRepository = () => {
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ node }) => node.id}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onReachEnd}
+      onEndReachedThreshold={0.5}
       ListHeaderComponent={() => {
         return (
           <View>
