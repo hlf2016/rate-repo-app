@@ -18,9 +18,9 @@ const SingleRepository = () => {
   // console.log(repository)
 
   const onReachEnd = () => {
-    console.log('更多')
+    // console.log('更多')
     fetchMore({
-      first: 2
+      first: 6
     })
   }
 

@@ -8,6 +8,7 @@ const useRepository = (variables) => {
   })
 
   const handleFetchMore = () => {
+    // console.log('geng')
     const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage
     if (!canFetchMore) {
       return
